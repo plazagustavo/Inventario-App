@@ -1,6 +1,6 @@
 package gm.inventarios.servicio;
 
-import gm.inventarios.modelo.Producto;
+import gm.inventarios.producto.model.Producto;
 import java.util.List;
 
 

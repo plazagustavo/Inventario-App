@@ -1,0 +1,27 @@
+# Build outputs
+target/
+build/
+dist/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.iws
+*.ipr
+.settings/
+.classpath
+.project
+*.factorypath
+*.apt_generated
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local config (secrets)
+.env
+application-local.properties

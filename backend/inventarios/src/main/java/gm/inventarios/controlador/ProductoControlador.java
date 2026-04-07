@@ -1,7 +1,7 @@
 package gm.inventarios.controlador;
 
 import gm.inventarios.excepcion.RecursoNoEncontradoExcepcion;
-import gm.inventarios.modelo.Producto;
+import gm.inventarios.producto.model.Producto;
 import gm.inventarios.servicio.ProductoServicio;
 import java.util.HashMap;
 import java.util.List;
@@ -35,14 +35,13 @@ public class ProductoControlador {
     @GetMapping("/productos") //http://locahost:8080/inventario-app/productos
     public List<Producto> obtenerProductos(){
         List<Producto> productos = this.productoServicio.listarProductos();
-        logger.info("Productos obtenidos:");
-        productos.forEach((producto -> logger.info(producto.toString())));
+        logger.info("Productos obtenidos: {}", productos.size());
         return productos;    
     }
 
     @PostMapping("/productos")
     public Producto agregarproducto(@RequestBody Producto producto){
-        logger.info("Producto a agregar: " + producto);
+        logger.info("Producto a agregar: descripcion={}", producto.getDescripcion());
         return this.productoServicio.guardarProducto(producto);
         
     }
@@ -82,7 +81,7 @@ public class ProductoControlador {
         if(producto == null){
             throw new RecursoNoEncontradoExcepcion("No se encontro el id " + id);  
         }
-        this.productoServicio.eliminarProducto(producto.getIdProducto());
+         this.productoServicio.eliminarProducto(producto.getId());
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
