@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="container text-center" style="margin: 30px">
+        <h1>Sistema de inventarios</h1>
+    </div>
+
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descripcion del producto</th>
+                <th scope="col">Precio del producto</th>
+                <th scope="col">Existencias</th>
+                <th scope="col">Estado</th>
+                <th scope="col" class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (producto of productos; track producto.id) {
+            <tr>
+                <th scope="row">{{ producto.id }}</th>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.precio | currency }}</td>
+                <td>{{ producto.existencia }}</td>
+                <td>
+                    @if (producto.existencia === 0) {
+                        <span class="badge bg-danger">Sin stock</span>
+                    } @else if (producto.existencia < 5) {
+                        <span class="badge bg-warning text-dark">Stock bajo</span>
+                    } @else {
+                        <span class="badge bg-success">Stock OK</span>
+                    }
+                </td>
+                <td class="text-center">
+                    <div>
+                        <button (click)="abrirModalVenta(producto)" 
+                        class="btn btn-success btn-sm me-2"
+                        [disabled]="producto.existencia === 0">Vender</button>
+                        <button (click)="editarProducto(producto.id)" 
+                        class="btn btn-warning btn-sm me-2">Editar</button>
+                        <button (click)="eliminarProducto(producto.id)" 
+                        class="btn btn-danger btn-sm">Eliminar</button> 
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (productos.length === 0) {
+        <div class="text-center mt-4">
+            <p class="text-muted">No hay productos en tu inventario.</p>
+            <a routerLink="/agregar-producto" class="btn btn-primary">Agregar primer producto</a>
+        </div>
+    }
+</div>
+
+<!-- Modal de venta -->
+@if (mostrarModalVenta && productoSeleccionado) {
+    <div class="modal d-block" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registrar Venta</h5>
+                    <button type="button" class="btn-close" (click)="cerrarModalVenta()"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Producto:</strong> {{ productoSeleccionado.descripcion }}</p>
+                    <p><strong>Stock actual:</strong> {{ productoSeleccionado.existencia }}</p>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad a vender:</label>
+                        <input type="number" class="form-control" id="cantidad" 
+                               [(ngModel)]="cantidadVenta" min="1" [max]="productoSeleccionado.existencia">
+                    </div>
+                    <p><strong>Nuevo stock:</strong> {{ productoSeleccionado.existencia - cantidadVenta }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="cerrarModalVenta()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" 
+                            (click)="confirmarVenta()"
+                            [disabled]="cantidadVenta < 1 || cantidadVenta > productoSeleccionado.existencia">
+                        Confirmar Venta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
