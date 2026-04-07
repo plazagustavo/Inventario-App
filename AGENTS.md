@@ -184,11 +184,14 @@ http://localhost:8080/swagger-ui/index.html
 ## DATABASE
 
 ```properties
+# Desarrollo local
 spring.datasource.url=jdbc:mysql://localhost:3306/inventario_db?createDatabaseIfNotExist=true
-spring.datasource.username=root
-spring.datasource.password=1111
+spring.datasource.username=${DB_USER:root}
+spring.datasource.password=${DB_PASSWORD}
 spring.jpa.hibernate.ddl-auto=update
 ```
+
+**Para producción (Railway):** usar variables de entorno, NO hardcodear credenciales.
 
 ---
 
