@@ -21,23 +21,41 @@
 ### ⚠️ Pendiente
 
 - Docker + docker-compose
-- Despliegue a la nube (Render/Railway)
+- Despliegue a la nube (Railway)
 
 ### ✅ Completado: Frontend con autenticación
 
-1. **auth.service.ts**
-   - Login/register con JWT
-   - Métodos: `isLoggedIn()`, `getToken()`, `logout()`
-
+1. **auth.service.ts** - Login/register con JWT, manejo de token en localStorage
 2. **login/** - Componente de login
 3. **register/** - Componente de registro
 4. **auth.guard.ts** - Protege rutas
 5. **app.routes.ts** - Actualizado con auth
 6. **producto.service.ts** - Envía token en headers
+7. **Botón vender** - Modal para registrar ventas y reducir stock
+8. **Estados de stock** - badges (Sin stock/Stock bajo/Stock OK)
+9. **Botón agregar** - Agregar productos sin stock inicial
+
+---
+
+## PRODUCTION DEPLOY
+
+### Railway (Backend)
+- URL: Configurada en Railway dashboard
+- Root Directory: `backend/inventarios`
+- MySQL: Provisionado en Railway
+- Variables de entorno: SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME, SPRING_DATASOURCE_PASSWORD
+
+### Pendiente: Frontend deploy
+- Cambiar URLs de localhost:8080 a URL de Railway en:
+  - auth.service.ts
+  - producto.service.ts
+- Deploy en Vercel o Netlify
 
 ---
 
 ## NEXT STEPS (Orden de prioridad)
+
+### 🟢 PENDING - Deploy frontend
 
 ### 🟡 MEDIUM - Testing
 
