@@ -23,117 +23,17 @@
 - Docker + docker-compose
 - Despliegue a la nube (Render/Railway)
 
-## COMMANDS TO RUN
+### ✅ Completado: Frontend con autenticación
 
-```bash
-# Backend
-cd backend/inventarios && mvn spring-boot:run
+1. **auth.service.ts**
+   - Login/register con JWT
+   - Métodos: `isLoggedIn()`, `getToken()`, `logout()`
 
-# Swagger UI
-http://localhost:8080/swagger-ui/index.html
-
-# Recursos disponibles en:
-# http://localhost:8080/v3/api-docs
-```
-
-## API ENDPOINTS ACTUALES
-
-| Método | Endpoint | Auth | Descripción |
-|--------|----------|------|-------------|
-| POST | `/api/auth/register` | ❌ | Registrar nuevo usuario |
-| POST | `/api/auth/login` | ❌ | Login, retorna JWT |
-| GET | `/inventario-app/productos` | ✅ | Listar productos (filtrado por usuario) |
-| POST | `/inventario-app/productos` | ✅ | Crear producto |
-| GET | `/inventario-app/productos/{id}` | ✅ | Obtener por ID |
-| PUT | `/inventario-app/productos/{id}` | ✅ | Actualizar producto |
-| DELETE | `/inventario-app/productos/{id}` | ✅ | Eliminar producto |
-
-**Headers requeridos**: `Authorization: Bearer <token_jwt>`
-
----
-
-## PROGRESS - Lo que hicimos
-
-### ✅ Completado: Filtrado multi-usuario
-
-1. **UsuarioActual.java** - Componente para obtener usuario desde SecurityContextHolder
-   - Ubicación: `gm.inventarios.security.UsuarioActual`
-   - Métodos: `obtener()` → User, `obtenerId()` → Integer
-
-2. **ProductoRepositorio.java** - Métodos existentes:
-   - `findByUsuario(User usuario)` - Listar productos del usuario
-   - `findByIdAndUsuario(Integer id, User usuario)` - Buscar por ID y usuario
-
-3. **ProductoServicio.java** - Modificado:
-   - `listarProductos()` → usa `findByUsuario()`
-   - `buscarProductoPorId()` → verifica pertenencia al usuario
-   - `guardarProducto()` → asigna usuario autenticado
-   - `eliminarProducto()` → verifica pertenencia antes de eliminar
-
-4. **ProductoControlador.java** - Ajustado:
-   - Sacados `toString()` del logger que causaban ConcurrentModificationException
-
-5. **Entidades corregidas** - Fix bugs JSON:
-   - `Producto.java`: `@JsonIgnore` en campo `usuario`
-   - `User.java`: `@JsonIgnore` en campo `productos`
-
-### ✅ Testing funcional verificado
-
-- GET `/inventario-app/productos` → retorna solo productos del usuario
-- POST crea producto con usuario asignado
-- PUT actualiza solo productos del usuario
-- DELETE elimina solo productos del usuario
-- Aislamiento entre usuarios confirmado (usuario otro ve lista vacía)
-
-### ✅ Completado: GlobalExceptionHandler
-
-1. **ErrorRespuesta.java** - DTO para respuestas de error consistentes
-   - `codigo`, `mensaje`, `path`, `fecha`, `detalles`
-
-2. **GlobalExceptionHandler.java** - Manejo centralizado de errores
-   - `RecursoNoEncontradoExcepcion` → 404
-   - `MethodArgumentNotValidException` → 400 con detalles de campos
-   - `HttpMessageNotReadableException` → 400
-   - `AuthenticationException` → 401
-   - `AccessDeniedException` → 403
-   - Exception genérica → 500
-
-### ✅ Completado: Tests unitarios
-
-1. **AuthServiceTest** (4 tests)
-   - `register_NuevoUsuario_ReturnsAuthResponse` ✅
-   - `register_EmailDuplicated_ThrowsException` ✅
-   - `login_CredencialesValidas_ReturnsAuthResponse` ✅
-   - `login_UsuarioNoEncontrado_ThrowsException` ✅
-
-2. **ProductoServicioTest** (8 tests)
-   - `listarProductos_UsuarioAutenticado_RetornaListaProductos` ✅
-   - `listarProductos_UsuarioNoAutenticado_ThrowsException` ✅
-   - `buscarProductoPorId_ProductoDelUsuario_RetornaProducto` ✅
-   - `buscarProductoPorId_ProductoNoExiste_RetornaNull` ✅
-   - `guardarProducto_UsuarioAutenticado_AsignaUsuarioYGuarda` ✅
-   - `guardarProducto_UsuarioNoAutenticado_ThrowsException` ✅
-   - `eliminarProducto_ProductoDelUsuario_EliminaCorrectamente` ✅
-   - `eliminarProducto_ProductoNoEncontrado_ThrowsException` ✅
-
-**Total: 13 tests - BUILD SUCCESS**
-
-### ✅ Completado: Docker + docker-compose
-
-1. **backend/inventarios/Dockerfile**
-   - Multi-stage build (Maven build → JRE runtime)
-   - Expone puerto 8080
-
-2. **docker-compose.yml**
-   - MySQL 8.0 con volumen persistente
-   - App Java espera a que MySQL esté sano
-   - Variables de entorno configurables
-
-3. **application.properties**
-   - Actualizado con variables de entorno para docker
-   - Valores por defecto para desarrollo local
-
-**Ejecutar:** `docker-compose up --build`
+2. **login/** - Componente de login
+3. **register/** - Componente de registro
+4. **auth.guard.ts** - Protege rutas
+5. **app.routes.ts** - Actualizado con auth
+6. **producto.service.ts** - Envía token en headers
 
 ---
 
