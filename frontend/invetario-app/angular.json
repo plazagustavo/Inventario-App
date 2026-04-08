@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "invetario-app": {
+    "inventario-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
