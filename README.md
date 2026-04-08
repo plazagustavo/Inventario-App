@@ -29,7 +29,6 @@ El frontend desarrollado en Angular consume una **API REST** desarrollada con Sp
 - **Angular 21** (standalone components)
 - TypeScript
 - Bootstrap 5
-- RxJS
 
 ## Despliegue
 - **Backend**: Railway
@@ -157,39 +156,6 @@ inventario-fullstack/
 │
 └── README.md
 ```
-
----
-
-# 🔧 Configuración e Instalación
-
-## Requisitos Previos
-- Java 21+
-- Node.js 18+
-- Angular CLI 18+
-- Maven 3.9+
-- MySQL 8.0+
-
-## ▶️ Ejecutar el Backend (Desarrollo)
-
-```bash
-cd backend/inventarios
-mvn spring-boot:run
-```
-
-El backend correrá en: `http://localhost:8080`
-
-Swagger UI: `http://localhost:8080/swagger-ui/index.html`
-
-## ▶️ Ejecutar el Frontend (Desarrollo)
-
-```bash
-cd frontend/inventario-app
-npm install
-ng serve
-```
-
-Abrir en el navegador: `http://localhost:4200`
-
 ---
 
 # 🌐 Deploy en Producción
@@ -211,18 +177,6 @@ Abrir en el navegador: `http://localhost:4200`
 | DELETE | `/inventario-app/productos/{id}` | Eliminar producto |
 
 **Nota**: Todos los endpoints de productos requieren autenticación JWT (excepto register y login).
-
----
-
-# 🧪 Testing
-
-Ejecutar tests unitarios:
-```bash
-cd backend/inventarios
-mvn test
-```
-
-**Resultados**: 13 tests passing (AuthServiceTest, ProductoServicioTest)
 
 ---
 
