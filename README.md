@@ -104,9 +104,8 @@ Formulario para modificar los datos de un producto existente.
 - Validación de datos en formularios
 
 ## ✅ APIs RESTful
-- Documentación con Swagger/OpenAPI
 - Endpoints REST estándar
-- Manejo de errores profesional con GlobalExceptionHandler
+- Manejo de errores con GlobalExceptionHandler
 
 ## ✅ Testing
 - Tests unitarios con JUnit 5 y Mockito
