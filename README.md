@@ -7,9 +7,11 @@ Este proyecto es una **plataforma SaaS multiusuario** donde cada usuario puede r
 ---
 
 # 🧠 Arquitectura del Sistema
-Frontend: Cliente de Angular (v21) alojado en Vercel, encargado de la lógica de presentación y gestión de sesiones mediante JWT.
-Backend: API REST construida con Spring Boot alojada en Railway, que implementa Spring Security para la protección de recursos.
-Persistencia: Base de datos MySQL (Railway) con aislamiento de datos a nivel de registro por usuario.
+-Frontend: Cliente de Angular (v21) alojado en Vercel, encargado de la lógica de presentación y gestión de sesiones mediante JWT.
+
+-Backend: API REST construida con Spring Boot alojada en Railway, que implementa Spring Security para la protección de recursos.
+
+-Persistencia: Base de datos MySQL (Railway) con aislamiento de datos a nivel de registro por usuario.
 
 ---
 
