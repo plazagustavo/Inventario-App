@@ -32,7 +32,7 @@ El frontend desarrollado en Angular consume una **API REST** desarrollada con Sp
 - RxJS
 
 ## Despliegue
-- **Backend**: Railway (https://inventario-app-production-f900.up.railway.app)
+- **Backend**: Railway
 - **Frontend**: Vercel
 
 ## Herramientas
