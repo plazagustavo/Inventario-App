@@ -194,15 +194,7 @@ Abrir en el navegador: `http://localhost:4200`
 
 # 🌐 Deploy en Producción
 
-## Backend (Railway)
-El backend está deployado y disponible en:
-- **URL**: https://inventario-app-production-f900.up.railway.app
-- **MySQL**: Provisionado en Railway
-- **Swagger**: https://inventario-app-production-f900.up.railway.app/swagger-ui/index.html
-
-## Frontend (Vercel)
-El frontend está deployado y disponible en:
-- **URL**: https://inventario-app-tawny.vercel.app
+ 🔗 Link del Proyecto: inventario-app-tawny.vercel.app
 
 ---
 
@@ -236,7 +228,7 @@ mvn test
 
 # 👨‍💻 Autor
 
-Proyecto desarrollado por **Gustavo Plaza** como parte de su portfolio profesional para demostrar habilidades en:
+ **Gustavo Plaza** 
 - Desarrollo Full Stack con Java/Spring Boot y Angular
 - Arquitecturas RESTful seguras
 - Sistemas multiusuario con JWT
