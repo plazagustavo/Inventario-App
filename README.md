@@ -12,33 +12,6 @@ La aplicación sigue una arquitectura **cliente-servidor** con autenticación JW
 
 El frontend desarrollado en Angular consume una **API REST** desarrollada con Spring Boot, la cual gestiona la lógica de negocio y la persistencia de datos en MySQL.
 
-graph TD
-    subgraph Cliente ["🌐 Frontend (Vercel)"]
-        A[Angular App] --> B{¿Tiene JWT?}
-    end
-
-    subgraph Seguridad ["🔐 Capa de Seguridad"]
-        B -- No --> C[Login / Registro]
-        B -- Sí --> D[Peticiones Protegidas]
-    end
-
-    subgraph Servidor ["⚙️ Backend (Railway)"]
-        C --> E[Spring Security]
-        D --> E
-        E --> F[Spring Boot API]
-        F -- "JPA / Hibernate" --> G[(MySQL Database)]
-    end
-
-    subgraph Datos ["📁 Persistencia"]
-        G --> H[Datos Aislados por Usuario]
-    end
-
-    %% Estilos
-    style Cliente fill:#f9f,stroke:#333,stroke-width:2px
-    style Servidor fill:#bbf,stroke:#333,stroke-width:2px
-    style Seguridad fill:#dfd,stroke:#333,stroke-width:2px
-    style Datos fill:#ffd,stroke:#333,stroke-width:2px
-
 ---
 
 # 🚀 Tecnologías Utilizadas
