@@ -40,22 +40,23 @@
 ## PRODUCTION DEPLOY
 
 ### Railway (Backend)
-- URL: Configurada en Railway dashboard
+- URL: https://inventario-app-production-f900.up.railway.app
 - Root Directory: `backend/inventarios`
 - MySQL: Provisionado en Railway
-- Variables de entorno: SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME, SPRING_DATASOURCE_PASSWORD
+- Variables de entorno: MYSQLHOST, MYSQLPORT, MYSQLDATABASE, MYSQLUSER, MYSQLPASSWORD
 
-### Pendiente: Frontend deploy
-- Cambiar URLs de localhost:8080 a URL de Railway en:
+### Frontend deploy
+- URLs actualizadas a Railway:
   - auth.service.ts
   - producto.service.ts
-- Deploy en Vercel o Netlify
+- Deploy en Vercel
 
 ---
 
 ## NEXT STEPS (Orden de prioridad)
 
-### 🟢 PENDING - Deploy frontend
+### 🟢 COMPLETED - Backend deploy en Railway
+### 🟢 COMPLETED - Frontend listo para deploy
 
 ### 🟡 MEDIUM - Testing
 

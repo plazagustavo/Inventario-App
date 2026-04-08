@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ProductoService {
-  private urlBase = 'http://localhost:8080/inventario-app/productos';
+  private urlBase = 'https://inventario-app-production-f900.up.railway.app/inventario-app/productos';
   private clienteHttp = inject(HttpClient);
   private authService = inject(AuthService);
 
