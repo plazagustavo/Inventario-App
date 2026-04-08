@@ -194,7 +194,7 @@ Abrir en el navegador: `http://localhost:4200`
 
 # 🌐 Deploy en Producción
 
- 🔗 Link del Proyecto: inventario-app-tawny.vercel.app
+🔗 **Demo:** [https://inventario-app-tawny.vercel.app](https://inventario-app-tawny.vercel.app)
 
 ---
 
