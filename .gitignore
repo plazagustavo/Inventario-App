@@ -25,3 +25,6 @@ Thumbs.db
 # Local config (secrets)
 .env
 application-local.properties
+
+# Project documentation
+AGENTS.md
